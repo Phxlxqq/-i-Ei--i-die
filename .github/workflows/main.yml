@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
+#   pull_request:
+#     branches:
+#       - main
 
 jobs:
   build_and_deploy_job:
@@ -22,4 +22,3 @@ jobs:
           repo_token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
           action: "upload"
           app_location: "/app"
-          
