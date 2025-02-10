@@ -29,20 +29,8 @@ function generateNumbers() {
         }
 
         numbers = mainNumbers.concat(euroNumbers);
-    } else if (lottoType === "powerball") {
-        // Powerball (5 aus 69 + 1 aus 26)
-        let mainNumbers = [];
-        while (mainNumbers.length < 5) {
-            let num = Math.floor(Math.random() * 69) + 1;
-            if (!mainNumbers.includes(num)) {
-                mainNumbers.push(num);
-            }
-        }
-
-        let powerball = Math.floor(Math.random() * 26) + 1;
-        numbers = mainNumbers.concat([powerball]);
     }
-
+    numbers.sort()
     // Anzeige der Zahlen
     document.getElementById("lotto-results").innerHTML = `Generierte Zahlen: ${numbers.join(", ")}`;
 }
