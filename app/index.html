@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
@@ -17,4 +17,86 @@
     </main>
     <script src="script.js"></script>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottozahlen Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .lotto-container {
+            margin: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .lotto-numbers {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lottozahlen Generator</h1>
+    <div class="lotto-container">
+        <div id="lottoNumbers" class="lotto-numbers">Wählen Sie ein Lotto-Spiel</div>
+        <button onclick="generateLottoNumbers()">Generieren</button>
+    </div>
+
+    <script>
+        function generateLottoNumbers() {
+            const games = {
+                "6 aus 49": { totalNumbers: 49, selectedNumbers: 6 },
+                "Eurojackpot": { totalNumbers: 50, selectedNumbers: 5 },
+                "Lotto 6 aus 45": { totalNumbers: 45, selectedNumbers: 6 },
+                // Füge weitere Spiele nach Bedarf hinzu
+            };
+
+            const gameChoice = prompt("Wählen Sie ein Spiel:\n6 aus 49, Eurojackpot, Lotto 6 aus 45");
+            
+            if (!games[gameChoice]) {
+                alert("Spiel nicht gefunden!");
+                return;
+            }
+
+            const { totalNumbers, selectedNumbers } = games[gameChoice];
+            let numbers = [];
+            while (numbers.length < selectedNumbers) {
+                const randomNumber = Math.floor(Math.random() * totalNumbers) + 1;
+                if (!numbers.includes(randomNumber)) {
+                    numbers.push(randomNumber);
+                }
+            }
+
+            numbers.sort((a, b) => a - b);
+            document.getElementById("lottoNumbers").textContent = `${gameChoice}: ${numbers.join(", ")}`;
+        }
+    </script>
+</body>
 </html>
+
