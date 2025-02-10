@@ -1,26 +1,65 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<title>Tippspiel</title>
-	</head>
-	<body>
-		<form action="tippspiel.php" method="post">
-            <label>
-                <input type="text" name="parameter1" placeholder="Wie viele">
-            </label>
-            aus <label>
-                <input type="text" name="parameter2" placeholder="wie vielen">
-            </label><br />
-			bei <label>
-                <input type="text" name="parameter3" placeholder="wie vielen Ziehungen">
-            </label>Ziehungen<br />
-			und <label>
-                <input type="text" name="parameter4" placeholder="wie viele">
-            </label>
-            aus <label>
-                <input type="text" name="parameter5" placeholder="wie vielen">
-            </label> Zusatzzahlen <br />
-				<input type="submit" value="Zufallszahlen ausgeben">
-		</form>
-	</body>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tippspiel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Lottozahlen Generator</h1>
+<form id="lottoForm">
+    <label>Wieviel Zahlen (z. B. 6): <input type="number" id="parameter1" required></label><br>
+    <label>Aus wie vielen Zahlen (z. B. 49): <input type="number" id="parameter2" required></label><br>
+    <label>Wie viele Ziehungen (z. B. 5): <input type="number" id="parameter3" required></label><br>
+    <label>Wieviel Zusatzzahlen (z. B. 3): <input type="number" id="parameter4" required></label><br>
+    <label>Zusatzzahlen aus wie vielen (z. B. 10): <input type="number" id="parameter5" required></label><br><br>
+    <button type="button" onclick="generateLottoNumbers()">Generieren</button>
+</form>
+<div class="result" id="output"></div>
+
+<script>
+    function generateLottoNumbers() {
+        let wieviel = parseInt(document.getElementById("parameter1").value);
+        let aus = parseInt(document.getElementById("parameter2").value);
+        let ziehungen = parseInt(document.getElementById("parameter3").value);
+        let zusatzwieviel = parseInt(document.getElementById("parameter4").value);
+        let zusatzaus = parseInt(document.getElementById("parameter5").value);
+
+        let output = document.getElementById("output");
+        output.innerHTML = "";
+
+        for (let x = 1; x <= ziehungen; x++) {
+            let zahlenArray = Array.from({ length: aus }, (_, i) => i + 1);
+            let zusatzArray = Array.from({ length: zusatzaus }, (_, i) => i + 1);
+
+            let zufallszahlen = [];
+            for (let i = 0; i < wieviel; i++) {
+                let index = Math.floor(Math.random() * zahlenArray.length);
+                zufallszahlen.push(zahlenArray.splice(index, 1)[0]);
+            }
+            zufallszahlen.sort((a, b) => a - b);
+
+            let zusatzzahlen = [];
+            for (let i = 0; i < zusatzwieviel; i++) {
+                let index = Math.floor(Math.random() * zusatzArray.length);
+                zusatzzahlen.push(zusatzArray.splice(index, 1)[0]);
+            }
+            zusatzzahlen.sort((a, b) => a - b);
+
+            output.innerHTML += `<p>${x}. Ziehung: ${zufallszahlen.join(", ")} - ${zusatzzahlen.join(", ")}</p>`;
+        }
+    }
+</script>
+</body>
 </html>
