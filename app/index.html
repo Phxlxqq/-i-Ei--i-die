@@ -93,8 +93,20 @@
                 }
             }
 
+<<<<<<< HEAD
             numbers.sort((a, b) => a - b);
             document.getElementById("lottoNumbers").textContent = `${gameChoice}: ${numbers.join(", ")}`;
+=======
+        function renderProducts() {
+            const list = document.getElementById('productList');
+            list.innerHTML = '';
+            products.forEach((product, index) => {
+                list.innerHTML += `<div class='product'>
+                    <strong>${product.name}</strong> - ${product.price}€
+                    <button onclick='deleteProduct(${index})'>Diliet</button>
+                </div>`;
+            });
+>>>>>>> fc62e3ee312d8a3de47923d5555fb3f30411636d
         }
     </script>
 </body>
