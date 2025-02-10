@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
@@ -16,5 +16,58 @@
         <p id="message"></p>
     </main>
     <script src="script.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webshop Manager</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; padding: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        input, button { margin: 5px; padding: 8px; }
+        .product { border: 1px solid #ddd; padding: 10px; margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Webshop Verwaltung</h2>
+        <input type="text" id="productName" placeholder="Produktname">
+        <input type="number" id="productPrice" placeholder="Preis">
+        <button onclick="addProduct()">Hinzufügen</button>
+        <div id="productList"></div>
+    </div>
+
+    <script>
+        let products = [];
+
+        function addProduct() {
+            const name = document.getElementById('productName').value;
+            const price = document.getElementById('productPrice').value;
+            if (name && price) {
+                products.push({ name, price });
+                renderProducts();
+            }
+        }
+
+        function deleteProduct(index) {
+            products.splice(index, 1);
+            renderProducts();
+        }
+
+        function renderProducts() {
+            const list = document.getElementById('productList');
+            list.innerHTML = '';
+            products.forEach((product, index) => {
+                list.innerHTML += `<div class='product'>
+                    <strong>${product.name}</strong> - ${product.price}€
+                    <button onclick='deleteProduct(${index})'>Löschen</button>
+                </div>`;
+            });
+        }
+    </script>
 </body>
 </html>
