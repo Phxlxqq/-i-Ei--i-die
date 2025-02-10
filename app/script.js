@@ -30,7 +30,6 @@ function generateNumbers() {
 
         numbers = mainNumbers.concat(euroNumbers);
     }
-    numbers.sort()
     // Anzeige der Zahlen
-    document.getElementById("lotto-results").innerHTML = `Generierte Zahlen: ${numbers.join(", ")}`;
+    document.getElementById("lotto-results").innerHTML = `Generierte Zahlen: ${numbers.sort().join(", ")}`;
 }
