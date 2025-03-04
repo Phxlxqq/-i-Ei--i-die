@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Lotto 6 aus 49 Generator</h1>
+    <form id="generatorForm">
+        <label for="anzahlZiehungen">Anzahl der Ziehungen:</label>
+        <input type="number" id="anzahlZiehungen" value="1" min="1">
+        <br><br>
+        <button type="button" onclick="generateLotto()">Zahlen generieren</button>
+    </form>
+    <div class="result" id="result"></div>
+    <a href="index.html">Zurück zur Homepage</a>
+</div>
+<script src="generator.js"></script>
+<script src="lotto.js"></script>
+</body>
+</html>
