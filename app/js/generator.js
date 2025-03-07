@@ -1,5 +1,5 @@
 // Gemeinsame Funktion zur Erzeugung einzigartiger Zufallszahlen
-function generateUniqueRandomNumbers(count, min, max) {
+export function generateUniqueRandomNumbers(count, min, max) {
     if (count > (max - min + 1)) {
         alert('Fehler: Die Anzahl der zu ziehenden Zahlen ist größer als der Zahlenbereich.');
         return [];

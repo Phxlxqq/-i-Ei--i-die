@@ -1,0 +1,12 @@
+{
+  "name": "lotto-generator",
+  "version": "1.0.0",
+  "description": "Eine Webseite zur Generierung von Lottozahlen",
+  "type": "commonjs",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}
