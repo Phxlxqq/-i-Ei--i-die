@@ -9,33 +9,31 @@ on:
       - main
 
 jobs:
-  test:
+  install-dependencies:
     runs-on: ubuntu-latest
-
     steps:
       - name: Repository auschecken
         uses: actions/checkout@v3
 
-      - name: Node.js einrichten
-        uses: actions/setup-node@v3
-        with:
-          node-version: latest
-
-      - name: Abhängigkeiten installieren
+      - name: Installiere Abhängigkeiten
         run: npm install
 
-      - name: Starte den Webserver
-        run: npm start & sleep 5 && ps aux | grep node
+  run-tests:
+    runs-on: ubuntu-latest
+    needs: install-dependencies  # Erst starten, wenn "install-dependencies" abgeschlossen ist
+    steps:
+    - name: Starte den Webserver
+      run: npm start & sleep 5 && ps aux | grep node
 
-      - name: Warten, bis der Server bereit ist
-        run: npx wait-on http://localhost:8080
+    - name: Warten, bis der Server bereit ist
+      run: npx wait-on http://localhost:8080
 
-      - name: Führe Tests mit Jest & Puppeteer aus
-        run: npm test
+    - name: Führe Tests mit Jest & Puppeteer aus
+      run: npm test
 
-      - name: Testberichte hochladen
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-reports
-          path: test-results/
+    - name: Testberichte hochladen
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-reports
+        path: test-results/
