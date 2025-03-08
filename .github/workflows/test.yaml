@@ -28,7 +28,7 @@ jobs:
         run: npm start & sleep 5 && ps aux | grep node
 
       - name: Warten, bis der Server bereit ist
-        run: npx wait-on http://localhost:3000
+        run: npx wait-on http://localhost:8080
 
       - name: Führe Tests mit Jest & Puppeteer aus
         run: npm test
