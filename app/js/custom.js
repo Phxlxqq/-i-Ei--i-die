@@ -25,7 +25,8 @@ function generateCustom() {
             let superNumbers = generateUniqueRandomNumbers(drawSuperCount, 1, totalSuperNumbers);
             line += ' - ' + superNumbers.join(', ');
         }
-        output += line + '<br>';
+        if (i !== ziehungen) output += line + '<br>';
+        else output += line;
     }
     resultDiv.innerHTML = output;
 }

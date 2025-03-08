@@ -1,4 +1,4 @@
-const { generateUniqueRandomNumbers } = require("../js/generator");
+const { generateUniqueRandomNumbers } = require("../../js/generator.js");
 
 
 describe("generateUniqueRandomNumbers", () => {
@@ -10,10 +10,6 @@ describe("generateUniqueRandomNumbers", () => {
     });
 
     test("soll Fehler auslösen, wenn zu viele Zahlen verlangt werden", () => {
-        jest.spyOn(global, "alert").mockImplementation(() => {});
-        expect(generateUniqueRandomNumbers(50, 1, 10)).toEqual([]);
-        expect(global.alert).toHaveBeenCalledWith(
-            "Fehler: Die Anzahl der zu ziehenden Zahlen ist größer als der Zahlenbereich."
-        );
+        expect(() => generateUniqueRandomNumbers(10, 1, 5)).toThrow();
     });
 });

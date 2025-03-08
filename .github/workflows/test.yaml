@@ -1,0 +1,41 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - *
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v3
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v3
+        with:
+          node-version: latest
+
+      - name: Abhängigkeiten installieren
+        run: npm install
+
+      - name: Startet den Webserver
+        run: npm start & # Startet die Anwendung im Hintergrund
+
+      - name: Warten, bis der Server bereit ist
+        run: npx wait-on http://localhost:3000
+
+      - name: Führe Tests mit Jest & Puppeteer aus
+        run: npm test
+
+      - name: Testberichte hochladen
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: test-results/

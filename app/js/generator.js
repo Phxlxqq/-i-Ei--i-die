@@ -1,7 +1,7 @@
 // Gemeinsame Funktion zur Erzeugung einzigartiger Zufallszahlen
-export function generateUniqueRandomNumbers(count, min, max) {
+function generateUniqueRandomNumbers(count, min, max) {
     if (count > (max - min + 1)) {
-        alert('Fehler: Die Anzahl der zu ziehenden Zahlen ist größer als der Zahlenbereich.');
+        throw new Error('Fehler: Die Anzahl der zu ziehenden Zahlen ist größer als der Zahlenbereich.');
         return [];
     }
     let numbers = [];
@@ -14,3 +14,5 @@ export function generateUniqueRandomNumbers(count, min, max) {
     numbers.sort((a, b) => a - b);
     return numbers;
 }
+
+module.exports = { generateUniqueRandomNumbers };
