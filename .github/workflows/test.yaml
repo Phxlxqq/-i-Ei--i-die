@@ -15,6 +15,11 @@ jobs:
       - name: Repository auschecken
         uses: actions/checkout@v3
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
       - name: Installiere Abhängigkeiten
         run: |
           npm install
@@ -26,18 +31,14 @@ jobs:
     needs: install-dependencies  # Erst starten, wenn "install-dependencies" abgeschlossen ist
     steps:
       - name: Starte den Webserver
-        run: npm start > server.log 2>&1 &
-
-      - name: Logdatei ausgeben
-        run: cat server.log
+        run: |
+          nohup node server.js &
+          sleep 10 # Warte 10 Sekunden, bis der Server gestartet ist
 
       - name: Warte auf den Server
         run: |
-          sleep 5  # Warte kurz, damit der Server Zeit hat zu starten
-          curl -Is http://localhost:3000 || echo "Server nicht erreichbar!"
-
-      - name: Warten, bis der Server bereit ist
-        run: npx wait-on http://localhost:3000 --timeout 60000
+          wait-on http://localhost:3000 --timeout 60000
+          echo "Server is ready"
 
       - name: Führe Tests mit Jest & Puppeteer aus
         run: npm test
