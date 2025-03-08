@@ -16,7 +16,8 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Installiere Abhängigkeiten
-        run: npm install
+        run: 'npm install
+              npm install --save-dev wait-on'
 
   run-tests:
     runs-on: ubuntu-latest
@@ -26,7 +27,7 @@ jobs:
       run: npm start & sleep 5 && ps aux | grep node
 
     - name: Warten, bis der Server bereit ist
-      run: npx wait-on http://localhost:8080
+      run: npx wait-on http://localhost:3000
 
     - name: Führe Tests mit Jest & Puppeteer aus
       run: npm test
