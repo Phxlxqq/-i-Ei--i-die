@@ -19,6 +19,7 @@ jobs:
         run: |
           npm install
           npm install --save-dev wait-on
+          npm install express
 
   run-tests:
     runs-on: ubuntu-latest
