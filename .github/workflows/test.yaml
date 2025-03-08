@@ -24,23 +24,26 @@ jobs:
     runs-on: ubuntu-latest
     needs: install-dependencies  # Erst starten, wenn "install-dependencies" abgeschlossen ist
     steps:
-    - name: Starte den Webserver
-      run: nohup npm start > server.log 2>&1 &
+      - name: Starte den Webserver
+        run: npm start > server.log 2>&1 &
 
-    - name: Warte auf den Server
-      run: |
-        sleep 5  # Warte kurz, damit der Server Zeit hat zu starten
-        curl -Is http://localhost:3000 || echo "Server nicht erreichbar!"
+      - name: Logdatei ausgeben
+        run: cat server.log
 
-    - name: Warten, bis der Server bereit ist
-      run: npx wait-on http://localhost:3000 --timeout 60000
+      - name: Warte auf den Server
+        run: |
+          sleep 5  # Warte kurz, damit der Server Zeit hat zu starten
+          curl -Is http://localhost:3000 || echo "Server nicht erreichbar!"
 
-    - name: Führe Tests mit Jest & Puppeteer aus
-      run: npm test
+      - name: Warten, bis der Server bereit ist
+        run: npx wait-on http://localhost:3000 --timeout 60000
 
-    - name: Testberichte hochladen
-      if: failure()
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-reports
-        path: test-results/
+      - name: Führe Tests mit Jest & Puppeteer aus
+        run: npm test
+
+      - name: Testberichte hochladen
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: test-results/
