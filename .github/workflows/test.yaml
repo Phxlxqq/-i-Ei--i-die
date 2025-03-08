@@ -32,7 +32,7 @@ jobs:
     steps:
       - name: Starte den Webserver
         run: |
-          nohup node server.js &
+          nohup node $(pwd)/server.js &
           sleep 10 # Warte 10 Sekunden, bis der Server gestartet ist
 
       - name: Warte auf den Server
