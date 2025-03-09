@@ -29,7 +29,9 @@ jobs:
           npm install express
 
       - name: Installiere Chrome
-        run: npx puppeteer browsers install chrome
+        run: |
+          sudo apt-get install -y google-chrome-stable
+          export PUPPETEER_EXECUTABLE_PATH="$(which google-chrome)"
 
   run-tests:
     runs-on: ubuntu-latest
