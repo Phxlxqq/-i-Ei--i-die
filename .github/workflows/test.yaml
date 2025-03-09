@@ -25,8 +25,14 @@ jobs:
 
       - name: Installiere Abhängigkeiten
         run: |
-          npm install
+          npm ci --verbose
           npm install express --save-dev
+
+      - name: List installed modules
+        run: npm list --depth=0
+
+      - name: Check node_modules directory
+        run: ls -R node_modules
 
       - name: Cache node_modules
         uses: actions/cache@v4
@@ -36,6 +42,15 @@ jobs:
             ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+
+      - name: Debug step - Check Node.js version
+        run: node --version
+
+      - name: Debug step - Check npm version
+        run: npm --version
+
+      - name: Debug step - Check working directory
+        run: pwd
 
   run-tests:
     runs-on: ubuntu-latest
