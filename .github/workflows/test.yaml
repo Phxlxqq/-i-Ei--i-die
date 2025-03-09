@@ -28,12 +28,6 @@ jobs:
           npm ci
           npm install express
 
-      - name: Lösche Puppeteer-Cache und installiere Chrome
-        run: |
-          rm -rf /home/runner/.cache/puppeteer
-          npx puppeteer browsers install chrome
-          export PUPPETEER_EXECUTABLE_PATH="$(which google-chrome)"
-
   run-tests:
     runs-on: ubuntu-latest
     needs: install-dependencies  # Erst starten, wenn "install-dependencies" abgeschlossen ist
@@ -61,6 +55,12 @@ jobs:
 #        run: |
 #          export PUPPETEER_CACHE_DIR=/home/runner/.cache/puppeteer
 #          export PUPPETEER_EXECUTABLE_PATH="$(which google-chrome)"
+
+      - name: Lösche Puppeteer-Cache und installiere Chrome
+        run: |
+          rm -rf /home/runner/.cache/puppeteer
+          npx puppeteer browsers install chrome
+          export PUPPETEER_EXECUTABLE_PATH="$(which google-chrome)"
 
       - name: Führe Tests mit Jest & Puppeteer aus
         run: npm test
