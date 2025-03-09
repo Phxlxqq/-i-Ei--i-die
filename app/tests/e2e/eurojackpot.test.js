@@ -7,7 +7,7 @@ describe('Eurojackpot Generator Tests', () => {
     beforeAll(async () => {
         browser = await puppeteer.launch({ headless: true });
         page = await browser.newPage();
-        await page.goto('http://localhost:3000/eurojackpot');
+        await page.goto('http://localhost:3000/eurojackpot.html');
     });
 
     afterAll(async () => {

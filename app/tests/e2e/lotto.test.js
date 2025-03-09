@@ -7,7 +7,7 @@ describe('Lotto Generator Tests', () => {
     beforeAll(async () => {
         browser = await puppeteer.launch({ headless: true });
         page = await browser.newPage();
-        await page.goto('http://localhost:3000/lotto');
+        await page.goto('http://localhost:3000/lotto.html');
     });
 
     afterAll(async () => {
