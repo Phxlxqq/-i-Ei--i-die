@@ -28,6 +28,9 @@ jobs:
           npm ci
           npm install express
 
+      - name: Installiere Chrome
+        run: npx puppeteer browsers install chrome
+
   run-tests:
     runs-on: ubuntu-latest
     needs: install-dependencies  # Erst starten, wenn "install-dependencies" abgeschlossen ist
