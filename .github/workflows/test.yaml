@@ -51,10 +51,10 @@ jobs:
           echo "Server is ready"
 
 
-#      - name: setze PATH-Variable für  Chrome
-#        run: |
-#          export PUPPETEER_CACHE_DIR=/home/runner/.cache/puppeteer
-#          export PUPPETEER_EXECUTABLE_PATH="$(which google-chrome)"
+      - name: Konfiguriere Puppeteer-Optionen
+        run: |
+          export PUPPETEER_EXECUTABLE_PATH="/usr/bin/google-chrome"
+          export PUPPETEER_LAUNCH_ARGS="--no-sandbox --disable-setuid-sandbox"
 
       - name: Lösche Puppeteer-Cache und installiere Chrome
         run: |
