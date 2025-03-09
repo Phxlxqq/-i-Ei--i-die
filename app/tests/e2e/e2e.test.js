@@ -6,7 +6,7 @@ describe("E2E Tests für Lotto-Webseite", () => {
 
     beforeAll(async () => {
         browser = await puppeteer.launch({
-            executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/google-chrome',
+            // executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/home/runner/.cache/puppeteer',
             headless: true
         });
         page = await browser.newPage();

@@ -30,7 +30,7 @@ jobs:
 
       - name: Installiere Chrome
         run: |
-          sudo apt-get install -y google-chrome-stable
+          npx puppeteer browsers install chrome
           export PUPPETEER_EXECUTABLE_PATH="$(which google-chrome)"
 
   run-tests:
@@ -56,10 +56,10 @@ jobs:
       - name: Überprüfe Chrome-Installation
         run: google-chrome --version
 
-      - name: setze PATH-Variable für  Chrome
-        run: |
-          export PUPPETEER_CACHE_DIR=/home/runner/.cache/puppeteer
-          export PUPPETEER_EXECUTABLE_PATH="$(which google-chrome)"
+#      - name: setze PATH-Variable für  Chrome
+#        run: |
+#          export PUPPETEER_CACHE_DIR=/home/runner/.cache/puppeteer
+#          export PUPPETEER_EXECUTABLE_PATH="$(which google-chrome)"
 
       - name: Führe Tests mit Jest & Puppeteer aus
         run: npm test
