@@ -4,33 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Benutzerdefinierte Ziehung</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="custom-page">
 <div class="container">
     <h1>Benutzerdefinierte Ziehung</h1>
     <form id="customForm">
-        <label for="totalNumbers">Gesamtanzahl der Kugeln (Hauptzahlen):</label>
-        <input type="number" id="totalNumbers" value="49" min="1">
-
         <label for="drawCount">Anzahl der zu ziehenden Kugeln (Hauptzahlen):</label>
-        <input type="number" id="drawCount" value="6" min="1">
+        <input type="number" id="drawCount" placeholder="z.B.: 6" min="1">
 
-        <label for="totalSuperNumbers">Gesamtanzahl der Kugeln (Superzahlen):<br><small>(Optional – nur wenn Superzahlen gezogen werden sollen)</small></label>
-        <input type="number" id="totalSuperNumbers" value="10" min="1">
+        <label for="totalNumbers">Gesamtanzahl der Kugeln (Hauptzahlen):</label>
+        <input type="number" id="totalNumbers" placeholder="z.B.: 49" min="1">
 
         <label for="drawSuperCount">Anzahl der zu ziehenden Kugeln (Superzahlen):<br><small>(Optional – 0 falls nicht gewünscht)</small></label>
-        <input type="number" id="drawSuperCount" value="1" min="0">
+        <input type="number" id="drawSuperCount" placeholder="z.B.: 1" min="0">
+
+        <label for="totalSuperNumbers">Gesamtanzahl der Kugeln (Superzahlen):<br><small>(Optional – nur wenn Superzahlen gezogen werden sollen)</small></label>
+        <input type="number" id="totalSuperNumbers" placeholder="z.B.: 10" min="1">
 
         <label for="anzahlZiehungen">Anzahl der Ziehungen:</label>
-        <input type="number" id="anzahlZiehungen" value="1" min="1">
+        <input type="number" id="anzahlZiehungen" placeholder="z.B.: 1" min="1">
 
         <button type="button" onclick="generateCustom()">Zahlen generieren</button>
     </form>
     <div class="result" id="result"></div>
-    <a href="index.html">Zurück zur Homepage</a>
+    <a href="index.html" class="button">Zurück zur Homepage</a>
 </div>
-<script src="generator.js"></script>
-<script src="custom.js"></script>
+<script src="js/generator.js"></script>
+<script src="js/custom.js"></script>
 </body>
 </html>
