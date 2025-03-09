@@ -28,7 +28,7 @@ describe("E2E Tests für Lotto-Webseite", () => {
     });
 
     test("Soll eine Lotto-Ziehung generieren", async () => {
-        await page.goto("http://localhost:3000/lotto");
+        await page.goto("http://localhost:3000/lotto.html");
         await page.click("button");
         await page.waitForSelector("#result");
         const resultText = await page.$eval("#result", el => el.innerText);
@@ -36,7 +36,7 @@ describe("E2E Tests für Lotto-Webseite", () => {
     });
 
     test("Soll eine Eurojackpot-Ziehung generieren", async () => {
-        await page.goto("http://localhost:3000/eurojackpot");
+        await page.goto("http://localhost:3000/eurojackpot.html");
         await page.click("button");
         await page.waitForSelector("#result");
         const resultText = await page.$eval("#result", el => el.innerText);
@@ -44,7 +44,7 @@ describe("E2E Tests für Lotto-Webseite", () => {
     });
 
     test("Soll eine benutzerdefinierte Ziehung generieren", async () => {
-        await page.goto("http://localhost:3000/custom");
+        await page.goto("http://localhost:3000/custom.html");
         await page.type('#drawCount', '5');
         await page.type('#totalNumbers', '10');
         await page.type('#drawSuperCount', '2');

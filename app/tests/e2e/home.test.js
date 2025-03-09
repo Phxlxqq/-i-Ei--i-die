@@ -25,7 +25,7 @@ describe('Homepage Tests', () => {
             await page.goto('http://localhost:3000'),
             page.click('a[href="/app/eurojackpot.html"]')
         ]);
-        expect(page.url()).toContain('/eurojackpot');
+        expect(page.url()).toContain('/eurojackpot.html');
     });
 
     test('Navigiert zum Custom Generator', async () => {
@@ -34,7 +34,7 @@ describe('Homepage Tests', () => {
             await page.goto('http://localhost:3000'),
             page.click('a[href="/app/custom.html"]')
         ]);
-        expect(page.url()).toContain('/custom');
+        expect(page.url()).toContain('/custom.html');
     });
 
     test('Navigiert zum Lotto 6 aus 49 Generator', async () => {
@@ -43,6 +43,6 @@ describe('Homepage Tests', () => {
             await page.goto('http://localhost:3000'),
             page.click('a[href="/app/lotto.html"]')
         ]);
-        expect(page.url()).toContain('/lotto');
+        expect(page.url()).toContain('/lotto.html');
     });
 });
