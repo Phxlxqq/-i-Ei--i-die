@@ -53,6 +53,9 @@ jobs:
           npx wait-on http://localhost:3000 --timeout 60000
           echo "Server is ready"
 
+      - name: setze PATH-Variable für  Chrome
+        run: export PUPPETEER_EXECUTABLE_PATH="$(which google-chrome)"
+
       - name: Führe Tests mit Jest & Puppeteer aus
         run: npm test
 
