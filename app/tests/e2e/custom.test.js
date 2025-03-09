@@ -7,7 +7,7 @@ describe('Custom Lottozahlen Generator Tests', () => {
     beforeAll(async () => {
         browser = await puppeteer.launch({ headless: true });
         page = await browser.newPage();
-        await page.goto('http://localhost:3000/custom');
+        await page.goto('http://localhost:3000/custom.html');
     });
 
     afterAll(async () => {
@@ -62,7 +62,7 @@ describe('Custom Lottozahlen Generator Tests', () => {
 
 
     test('Regenerieren erzeugt neue Zahlen', async () => {
-        await page.goto('http://localhost:3000/custom');
+        await page.goto('http://localhost:3000/custom.html');
         await page.type('#drawCount', '6');
         await page.type('#totalNumbers', '49');
         await page.type('#totalSuperNumbers', '10');
@@ -81,7 +81,7 @@ describe('Custom Lottozahlen Generator Tests', () => {
     test('Zurück zur Homepage funktioniert', async () => {
         // Klicke auf den "Zurück zur Homepage"-Link
         await Promise.all([
-            await page.goto('http://localhost:3000/custom'),
+            await page.goto('http://localhost:3000/custom.html'),
             page.waitForNavigation(),  // Warte, bis die Navigation abgeschlossen ist
             page.click('a[href="index.html"]')  // Suche nach dem Link, der zur Homepage führt
         ]);
