@@ -15,21 +15,26 @@ jobs:
       - name: Repository auschecken
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Debug Filesystem
+        run: ls -R $(pwd)
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: latest
 
       - name: Installiere Abhängigkeiten
         run: |
-          npm install
-          npm install --save-dev wait-on
+          npm ci
           npm install express
 
   run-tests:
     runs-on: ubuntu-latest
     needs: install-dependencies  # Erst starten, wenn "install-dependencies" abgeschlossen ist
     steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v3
+
       - name: Starte den Webserver
         run: |
           nohup node $(pwd)/server.js &
