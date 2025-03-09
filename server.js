@@ -8,12 +8,12 @@ app.use(express.static(path.join(__dirname, 'app')));
 
 // Standardroute für die Homepage
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));  // Der Pfad zu index.html muss relativ zu public sein
 });
 
 // Beispielroute für andere Seiten
 app.get('/lotto', (req, res) => {
-    res.sendFile(path.join(__dirname, 'lotto.html'));
+    res.sendFile(path.join(__dirname, 'lotto.html'));  // Auch hier den richtigen Pfad zur Lotto-Seite verwenden
 });
 
 // Fehlerbehandlung für unbekannte Routen
