@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 
-describe('Eurojackpot Generator Tests', async () => {
+describe('Eurojackpot Generator Tests', () => {
     let browser;
     let page;
 
@@ -8,12 +8,6 @@ describe('Eurojackpot Generator Tests', async () => {
         browser = await puppeteer.launch({headless: true});
         page = await browser.newPage();
         await page.goto('http://localhost:3000/eurojackpot.html');
-    });
-
-    // Warten, bis der Server verfügbar ist
-    await waitOn({
-        resources: ['http://localhost:3000'],
-        timeout: 10000,  // 10 Sekunden warten
     });
 
     afterAll(async () => {

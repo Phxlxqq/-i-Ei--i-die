@@ -1,19 +1,13 @@
 const puppeteer = require('puppeteer');
 
-describe('Lotto Generator Tests', async () => {
+describe('Lotto Generator Tests', () => {
     let browser;
     let page;
 
     beforeAll(async () => {
-        browser = await puppeteer.launch({headless: true});
+        browser = await puppeteer.launch({ headless: true });
         page = await browser.newPage();
         await page.goto('http://localhost:3000/lotto.html');
-    });
-
-    // Warten, bis der Server verfügbar ist
-    await waitOn({
-        resources: ['http://localhost:3000'],
-        timeout: 10000,  // 10 Sekunden warten
     });
 
     afterAll(async () => {

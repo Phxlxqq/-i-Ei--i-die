@@ -1,6 +1,6 @@
 const puppeteer = require("puppeteer");
 
-describe("E2E Tests für Lotto-Webseite", async () => {
+describe("E2E Tests für Lotto-Webseite", () => {
     let browser;
     let page;
 
@@ -9,12 +9,6 @@ describe("E2E Tests für Lotto-Webseite", async () => {
             headless: true
         });
         page = await browser.newPage();
-    });
-
-    // Warten, bis der Server verfügbar ist
-    await waitOn({
-        resources: ['http://localhost:3000'],
-        timeout: 10000,  // 10 Sekunden warten
     });
 
     afterAll(async () => {
