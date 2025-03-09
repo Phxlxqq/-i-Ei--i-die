@@ -28,8 +28,9 @@ jobs:
           npm ci
           npm install express
 
-      - name: Installiere Chrome
+      - name: Lösche Puppeteer-Cache und installiere Chrome
         run: |
+          rm -rf /home/runner/.cache/puppeteer
           npx puppeteer browsers install chrome
           export PUPPETEER_EXECUTABLE_PATH="$(which google-chrome)"
 
