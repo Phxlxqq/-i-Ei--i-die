@@ -6,7 +6,6 @@ describe("E2E Tests für Lotto-Webseite", () => {
 
     beforeAll(async () => {
         browser = await puppeteer.launch({
-            // executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/home/runner/.cache/puppeteer',
             headless: true
         });
         page = await browser.newPage();
@@ -17,7 +16,7 @@ describe("E2E Tests für Lotto-Webseite", () => {
     });
 
     test("Soll die Startseite laden und Links enthalten", async () => {
-        await page.goto("http://localhost:3000");
+        await page.goto("http://localhost:3000/index.html");
         const title = await page.title();
         expect(title).toBe("Zufallszahlen Generator");
 
@@ -53,7 +52,6 @@ describe("E2E Tests für Lotto-Webseite", () => {
         await page.click("button");
         await page.waitForSelector('.result');
         const resultText = await page.$eval("#result", el => el.innerText);
-        //console.log("Extracted text:", resultText);
         expect(resultText).toMatch(/^\d+\.\sZiehung:\s(\d{1,2},\s){4}\d{1,2}\s-\s(\d{1,2},\s){1}\d{1,2}$/);
     });
 });

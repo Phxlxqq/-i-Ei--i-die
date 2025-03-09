@@ -46,6 +46,6 @@ describe('Eurojackpot Generator Tests', () => {
         ]);
 
         // Überprüfe, ob die URL korrekt ist
-        expect(page.url()).toBe('http://localhost:3000');
+        expect(page.url()).toBe('http://localhost:3000/index.html');
     });
 });
