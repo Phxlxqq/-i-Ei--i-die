@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-// const waitOn = require('wait-on');
+const waitOn = require('wait-on');
 
 describe('Lotto Generator Tests', () => {
     let browser;
