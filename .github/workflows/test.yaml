@@ -27,7 +27,7 @@ jobs:
         run: |
           npm ci
           npm install express --save-dev
-          npm install wait-on --save-dev
+          npm install wait-on
 
   run-tests:
     runs-on: ubuntu-latest

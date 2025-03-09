@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-const waitOn = require("wait-on");
+const waitOn = require('wait-on');
 
 describe('Lotto Generator Tests', () => {
     let browser;
@@ -10,7 +10,7 @@ describe('Lotto Generator Tests', () => {
         try {
             await waitOn({
                 resources: ['http://localhost:3000'],
-                timeout: 10000,  // Timeout auf 10 Sekunden setzen
+                timeout: 10000  // Timeout auf 10 Sekunden setzen
             });
             console.log("Server ist bereit!");  // Wenn der Server erreichbar ist, logge dies
         } catch (error) {
