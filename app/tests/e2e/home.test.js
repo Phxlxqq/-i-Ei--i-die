@@ -1,13 +1,19 @@
 const puppeteer = require('puppeteer');
 
-describe('Homepage Tests', () => {
+describe('Homepage Tests', async () => {
     let browser;
     let page;
 
     beforeAll(async () => {
-        browser = await puppeteer.launch({ headless: true });
+        browser = await puppeteer.launch({headless: true});
         page = await browser.newPage();
         await page.goto('http://localhost:3000/index.html');
+    });
+
+    // Warten, bis der Server verfügbar ist
+    await waitOn({
+        resources: ['http://localhost:3000'],
+        timeout: 10000,  // 10 Sekunden warten
     });
 
     afterAll(async () => {
