@@ -1,23 +1,10 @@
 const puppeteer = require("puppeteer");
-const waitOn = require('wait-on');
 
 describe("E2E Tests für Lotto-Webseite", () => {
     let browser;
     let page;
 
     beforeAll(async () => {
-        console.log("Warte auf Server...");
-        try {
-            await waitOn({
-                resources: ['http://localhost:3000'],
-                timeout: 10000,  // Timeout auf 10 Sekunden setzen
-            });
-            console.log("Server ist bereit!");  // Wenn der Server erreichbar ist, logge dies
-        } catch (error) {
-            console.error("Fehler beim Warten auf den Server: ", error);
-            throw new Error("Server konnte nicht gestartet oder erreicht werden.");
-        }
-
         browser = await puppeteer.launch({
             headless: true
         });
