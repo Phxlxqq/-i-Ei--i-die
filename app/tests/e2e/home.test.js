@@ -23,7 +23,7 @@ describe('Homepage Tests', () => {
         await Promise.all([
             page.waitForNavigation(),  // Warte, bis die Navigation abgeschlossen ist
             await page.goto('http://localhost:3000/index.html'),
-            page.click('a[href="/app/eurojackpot.html"]')
+            page.click('a[href="eurojackpot.html"]')
         ]);
         expect(page.url()).toContain('/eurojackpot.html');
     });
@@ -32,7 +32,7 @@ describe('Homepage Tests', () => {
         await Promise.all([
             page.waitForNavigation(),
             await page.goto('http://localhost:3000/index.html'),
-            page.click('a[href="/app/custom.html"]')
+            page.click('a[href="custom.html"]')
         ]);
         expect(page.url()).toContain('/custom.html');
     });
@@ -41,7 +41,7 @@ describe('Homepage Tests', () => {
         await Promise.all([
             page.waitForNavigation(),
             await page.goto('http://localhost:3000/index.html'),
-            page.click('a[href="/app/lotto.html"]')
+            page.click('a[href="lotto.html"]')
         ]);
         expect(page.url()).toContain('/lotto.html');
     });
