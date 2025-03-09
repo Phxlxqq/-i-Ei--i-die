@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-const waitOn = require("wait-on");
+const waitOn = require('wait-on');
 
 describe('Custom Lottozahlen Generator Tests', () => {
     let browser;
@@ -21,7 +21,7 @@ describe('Custom Lottozahlen Generator Tests', () => {
         browser = await puppeteer.launch({ headless: true });
         page = await browser.newPage();
         await page.goto('http://localhost:3000/custom.html');
-    });
+    }, 15000);
 
     afterAll(async () => {
         await browser.close();

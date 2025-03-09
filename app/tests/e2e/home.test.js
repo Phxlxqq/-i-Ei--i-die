@@ -21,7 +21,7 @@ describe('Homepage Tests', () => {
         browser = await puppeteer.launch({headless: true});
         page = await browser.newPage();
         await page.goto('http://localhost:3000/index.html');
-    });
+    }, 15000);
 
     afterAll(async () => {
         await browser.close();

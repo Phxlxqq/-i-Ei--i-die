@@ -22,7 +22,7 @@ describe("E2E Tests für Lotto-Webseite", () => {
             headless: true
         });
         page = await browser.newPage();
-    });
+    }, 15000);
 
     afterAll(async () => {
         await browser.close();

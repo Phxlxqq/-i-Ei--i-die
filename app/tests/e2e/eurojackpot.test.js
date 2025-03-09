@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-const waitOn = require("wait-on");
+const waitOn = require('wait-on');
 
 describe('Eurojackpot Generator Tests', () => {
     let browser;
@@ -21,7 +21,7 @@ describe('Eurojackpot Generator Tests', () => {
         browser = await puppeteer.launch({headless: true});
         page = await browser.newPage();
         await page.goto('http://localhost:3000/eurojackpot.html');
-    });
+    }, 15000);
 
     afterAll(async () => {
         await browser.close();
