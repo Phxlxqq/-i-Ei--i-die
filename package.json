@@ -9,7 +9,8 @@
   },
   "devDependencies": {
     "jest": "^29.7.0",
-    "puppeteer": "^24.4.0"
+    "puppeteer": "^24.4.0",
+    "wait-on": "^8.0.2"
   },
   "dependencies": {
     "express": "^4.21.2"

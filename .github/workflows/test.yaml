@@ -26,7 +26,8 @@ jobs:
       - name: Installiere Abhängigkeiten
         run: |
           npm ci
-          npm install express
+          npm install express --save-dev
+          npm install wait-on --save-dev
 
   run-tests:
     runs-on: ubuntu-latest
