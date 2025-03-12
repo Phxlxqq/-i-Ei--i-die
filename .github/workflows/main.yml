@@ -9,8 +9,99 @@ on:
       - main
 
 jobs:
-  build_and_deploy_job:
+  install-dependencies:
     runs-on: ubuntu-latest
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v3
+
+      - name: Debug Filesystem
+        run: ls -R $(pwd)
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v3
+        with:
+          node-version: latest
+
+      - name: Installiere Abhängigkeiten
+        run: |
+          npm ci --verbose
+          npm install express --save-dev
+
+      - name: List installed modules
+        run: npm list --depth=0
+
+      - name: Check node_modules directory
+        run: ls -R node_modules
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: |
+            ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Debug step - Check Node.js version
+        run: node --version
+
+      - name: Debug step - Check npm version
+        run: npm --version
+
+      - name: Debug step - Check working directory
+        run: pwd
+
+  run-tests:
+    runs-on: ubuntu-latest
+    needs: install-dependencies  # Erst starten, wenn "install-dependencies" abgeschlossen ist
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v3
+
+      - name: Berechtigungen setzen
+        run: |
+          chmod +x node_modules/.bin/jest
+          chmod +x node_modules/.bin/puppeteer
+
+      - name: Starte den Webserver
+        run: |
+          nohup node $(pwd)/server.js &
+          sleep 10 # Warte 10 Sekunden, bis der Server gestartet ist
+
+      - name: Warte auf den Server
+        run: |
+          npx wait-on http://localhost:3000 --timeout 60000
+          echo "Server is ready"
+
+      - name: Lösche Puppeteer-Cache und installiere Chrome
+        run: |
+          rm -rf /home/runner/.cache/puppeteer
+          npx puppeteer browsers install chrome
+          export PUPPETEER_EXECUTABLE_PATH="$(which google-chrome)"
+
+      - name: Überprüfe Chrome-Installation
+        run: |
+          google-chrome --version
+          echo $(which google-chrome)
+
+      - name: Führe Tests mit Jest & Puppeteer aus
+        run: |
+          export PUPPETEER_EXECUTABLE_PATH="/usr/bin/google-chrome"
+          export PUPPETEER_LAUNCH_ARGS="--no-sandbox --disable-setuid-sandbox"
+          npm test
+
+      - name: Testberichte hochladen
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: test-results/
+
+  build-and-deploy-job:
+    runs-on: ubuntu-latest
+    needs: run-tests
+    if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
